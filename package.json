@@ -1,0 +1,15 @@
+{
+  "name": "yt-wrapper",
+  "version": "1.0.0",
+  "description": "Wrapper for Youtube Data API v3",
+  "type": "commonjs",
+  "exports": {
+    "require": "./index.cjs",
+    "import": "./index.mjs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "56pancakes",
+  "license": "ISC"
+}
