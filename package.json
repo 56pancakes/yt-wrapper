@@ -1,6 +1,6 @@
 {
   "name": "yt-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wrapper for Youtube Data API v3",
   "type": "commonjs",
   "exports": {
