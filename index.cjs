@@ -1,5 +1,5 @@
-async function request(apiKey, id, endpoint, options) {
-  let url = `https://www.googleapis.com/youtube/v3/${endpoint}?id=${id}&key=${apiKey}${options || ""}`
+async function request(apiKey, filter, endpoint, options) {
+  let url = `https://www.googleapis.com/youtube/v3/${endpoint}?${filter}&key=${apiKey}${options || ""}`
   const res = await fetch(url)
   return await res.json()
 }
@@ -19,7 +19,7 @@ async function getVideo(videoURL, apiKey) {
     return {"success": false, "error": "Invalid Youtube URL"};
   }
   try {
-    let data = await request(apiKey, id, "videos", "&part=snippet,statistics,contentDetails")
+    let data = await request(apiKey, `id=${id}`, "videos", "&part=snippet,statistics,contentDetails")
     const match = data.items[0].contentDetails.duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
     let obj = {
       "success": true,
@@ -44,7 +44,7 @@ async function getVideo(videoURL, apiKey) {
 
 async function getVideoFromID(videoID, apiKey) {
   try {
-    let data = await request(apiKey, videoID, "videos", "&part=snippet,statistics,contentDetails")
+    let data = await request(apiKey, `id=${videoID}`, "videos", "&part=snippet,statistics,contentDetails")
     const match = data.items[0].contentDetails.duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
     let obj = {
       "success": true,
@@ -67,5 +67,48 @@ async function getVideoFromID(videoID, apiKey) {
   }
 }
 
+async function getChannelFromID(channelID, apiKey) {
+  try {
+    let data = await request(apiKey, `id=${channelID}`, "channels", "&part=snippet,statistics,contentDetails")
+    let obj = {
+      "success": true,
+      "id": data.items[0].id,
+      "name": data.items[0].snippet.title,
+      "handle": data.items[0].snippet.customUrl || "",
+      "description": data.items[0].snippet.description || "",
+      "createdOn": data.items[0].snippet.publishedAt,
+      "views": data.items[0].statistics.viewCount,
+      "subscribers": data.items[0].statistics.subscriberCount || 0,
+      "link": `https://www.youtube.com/channel/${data.items[0].id}`,
+      "channelPfp": data.items[0].snippet.thumbnails,
+      "country": data.items[0].snippet.country
+    }
+    return obj;
+  } catch (e) {
+    return {"success": false, "error": e};
+  }
+}
 
-module.exports = { getVideoID, getVideo, getVideoFromID };
+async function getChannelFromHandle(handle, apiKey) {
+  try {
+    let data = await request(apiKey, `forHandle=${handle}`, "channels", "&part=snippet,statistics,contentDetails")
+    let obj = {
+      "success": true,
+      "id": data.items[0].id,
+      "name": data.items[0].snippet.title,
+      "handle": data.items[0].snippet.customUrl || "",
+      "description": data.items[0].snippet.description || "",
+      "createdOn": data.items[0].snippet.publishedAt,
+      "views": data.items[0].statistics.viewCount,
+      "subscribers": data.items[0].statistics.subscriberCount || 0,
+      "link": `https://www.youtube.com/channel/${data.items[0].id}`,
+      "channelPfp": data.items[0].snippet.thumbnails,
+      "country": data.items[0].snippet.country
+    }
+    return obj;
+  } catch (e) {
+    return {"success": false, "error": e};
+  }
+}
+
+module.exports = { getVideoID, getVideo, getVideoFromID, getChannelFromID, getChannelFromHandle };

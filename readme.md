@@ -22,10 +22,15 @@ const videoID = getVideoID(videoLink)
 console.log(videoID)
 ```
 
-Output
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+  
 ```yaml
 MILSirUni5E
 ```
+</details>
+<br>
 
 ## Get Video Info From Link
 
@@ -42,7 +47,10 @@ getVideo(videoLink, apiKey)
   })
 ```
 
-Output
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+
 ```yaml
 {
   success: true,
@@ -86,6 +94,8 @@ Output
   tags: [ 'gdl', 'youtubeapi', 'youtube' ]
 }
 ```
+</details>
+<br>
 
 ## Get Video Info From ID
 
@@ -96,13 +106,16 @@ const { getVideoFromID } = require("yt-wrapper");
 const videoID = "MILSirUni5E";
 const apiKey = "";
 
-getVideo(videoID, apiKey)
+getVideoFromID(videoID, apiKey)
   .then((video) => {
     console.log(video)
   })
 ```
 
-Output
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+
 ```yaml
 {
   success: true,
@@ -146,4 +159,111 @@ Output
   tags: [ 'gdl', 'youtubeapi', 'youtube' ]
 }
 ```
+</details>
+<br>
 
+## Get Channel Info From Handle
+
+Requires Youtube Data API key
+```js
+const { getChannelFromHandle } = require("yt-wrapper");
+
+const handle = "youtube";
+const apiKey = "";
+
+getChannelFromHandle(handle, apiKey)
+  .then((channel) => {
+    console.log(channel)
+  })
+```
+
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+
+```yaml
+{
+  success: true,
+  id: 'UCBR8-60-B28hp2BmDPdntcQ',
+  name: 'YouTube',
+  handle: '@youtube',
+  description: "YouTube's Official Channel helps you discover what's new & trending globally. Watch must-see videos, from music to culture to Internet phenomena",
+  createdOn: '1970-01-01T00:00:00Z',
+  views: '2536027678',
+  subscribers: '42500000',
+  link: 'https://www.youtube.com/channel/UCBR8-60-B28hp2BmDPdntcQ',
+  channelPfp: {
+    default: {
+      url: 'https://yt3.ggpht.com/Bg5wS82KGryRmcsn1YbPThtbXoTmj2XJ9_7LmuE2RF6wbKJBkovfRypbSz6UD3gEu_nHiwGZtQ=s88-c-k-c0x00ffffff-no-rj',
+      width: 88,
+      height: 88
+    },
+    medium: {
+      url: 'https://yt3.ggpht.com/Bg5wS82KGryRmcsn1YbPThtbXoTmj2XJ9_7LmuE2RF6wbKJBkovfRypbSz6UD3gEu_nHiwGZtQ=s240-c-k-c0x00ffffff-no-rj',
+      width: 240,
+      height: 240
+    },
+    high: {
+      url: 'https://yt3.ggpht.com/Bg5wS82KGryRmcsn1YbPThtbXoTmj2XJ9_7LmuE2RF6wbKJBkovfRypbSz6UD3gEu_nHiwGZtQ=s800-c-k-c0x00ffffff-no-rj',
+      width: 800,
+      height: 800
+    }
+  },
+  country: 'US'
+}
+```
+</details>
+<br>
+
+## Get Channel Info From ID
+
+Requires Youtube Data API key
+```js
+const { getChannelFromID } = require("yt-wrapper");
+
+const channelID = "UCBR8-60-B28hp2BmDPdntcQ";
+const apiKey = "";
+
+getChannelFromHandle(channelID, apiKey)
+  .then((channel) => {
+    console.log(channel)
+  })
+```
+
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+
+```yaml
+{
+  success: true,
+  id: 'UCBR8-60-B28hp2BmDPdntcQ',
+  name: 'YouTube',
+  handle: '@youtube',
+  description: "YouTube's Official Channel helps you discover what's new & trending globally. Watch must-see videos, from music to culture to Internet phenomena",
+  createdOn: '1970-01-01T00:00:00Z',
+  views: '2536027678',
+  subscribers: '42500000',
+  link: 'https://www.youtube.com/channel/UCBR8-60-B28hp2BmDPdntcQ',
+  channelPfp: {
+    default: {
+      url: 'https://yt3.ggpht.com/Bg5wS82KGryRmcsn1YbPThtbXoTmj2XJ9_7LmuE2RF6wbKJBkovfRypbSz6UD3gEu_nHiwGZtQ=s88-c-k-c0x00ffffff-no-rj',
+      width: 88,
+      height: 88
+    },
+    medium: {
+      url: 'https://yt3.ggpht.com/Bg5wS82KGryRmcsn1YbPThtbXoTmj2XJ9_7LmuE2RF6wbKJBkovfRypbSz6UD3gEu_nHiwGZtQ=s240-c-k-c0x00ffffff-no-rj',
+      width: 240,
+      height: 240
+    },
+    high: {
+      url: 'https://yt3.ggpht.com/Bg5wS82KGryRmcsn1YbPThtbXoTmj2XJ9_7LmuE2RF6wbKJBkovfRypbSz6UD3gEu_nHiwGZtQ=s800-c-k-c0x00ffffff-no-rj',
+      width: 800,
+      height: 800
+    }
+  },
+  country: 'US'
+}
+```
+</details>
+<br>
