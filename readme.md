@@ -162,6 +162,126 @@ getVideoFromID(videoID, apiKey)
 </details>
 <br>
 
+
+## Get Info From Array of Video Links
+
+Requires Youtube Data API key
+```js
+const { getVideos } = require("yt-wrapper");
+
+const videos = ["https://www.youtube.com/watch?v=MILSirUni5E", "https://www.youtube.com/watch?v=RjUlmco7v2M"];
+const apiKey = "";
+
+getVideos(videos, apiKey)
+  .then((videos) => {
+    console.log(videos)
+  })
+```
+
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+
+```yaml
+{
+  success: true,
+  videos: [
+    {
+      success: true,
+      id: 'MILSirUni5E',
+      title: 'YouTube Developers Live: API v3 Overview',
+      description: "We'll walk developers through things they need to know about the new YouTube API v3 and YouTube Analytics APIs, both of which are currently in a closed preview release. Learning more now will help you get up and running once the APIs are widely available.",
+      channel: 'Google for Developers',
+      duration: 3314,
+      uploadedAt: '2012-08-08T17:59:39Z',
+      views: '12946',
+      likes: '89',
+      comments: '365',
+      link: 'https://www.youtube.com/watch?v=MILSirUni5E',
+      thumbnails: [Object],
+      tags: [Array]
+    },
+    {
+      success: true,
+      id: 'RjUlmco7v2M',
+      title: "Getting a channel's uploads in YouTube Data API v3",
+      description: 'Migrating from the YouTube Data API v2 to v3? Jeff Posnick walks you through the v3 API calls needed to get a list of the videos uploaded in a given channel, with live demos using the API Explorer (https://developers.google.com/apis-explorer).',
+      channel: 'Google for Developers',
+      duration: 659,
+      uploadedAt: '2014-01-29T17:53:13Z',
+      views: '61056',
+      likes: '440',
+      comments: '78',
+      link: 'https://www.youtube.com/watch?v=RjUlmco7v2M',
+      thumbnails: [Object],
+      tags: [Array]
+    }
+  ]
+}
+```
+</details>
+<br>
+
+## Get Info From Array of Video IDs
+
+Requires Youtube Data API key
+```js
+const { getVideosFromID } = require("yt-wrapper");
+
+const videos = ["MILSirUni5E", "RjUlmco7v2M"];
+const apiKey = "";
+
+getVideosFromID(videos, apiKey)
+  .then((videos) => {
+    console.log(videos)
+  })
+```
+
+<details>
+  <summary><b>Output</b></summary>
+  <br>
+
+```yaml
+{
+  success: true,
+  videos: [
+    {
+      success: true,
+      id: 'MILSirUni5E',
+      title: 'YouTube Developers Live: API v3 Overview',
+      description: "We'll walk developers through things they need to know about the new YouTube API v3 and YouTube Analytics APIs, both of which are currently in a closed preview release. Learning more now will help you get up and running once the APIs are widely available.",
+      channel: 'Google for Developers',
+      duration: 3314,
+      uploadedAt: '2012-08-08T17:59:39Z',
+      views: '12946',
+      likes: '89',
+      comments: '365',
+      link: 'https://www.youtube.com/watch?v=MILSirUni5E',
+      thumbnails: [Object],
+      tags: [Array]
+    },
+    {
+      success: true,
+      id: 'RjUlmco7v2M',
+      title: "Getting a channel's uploads in YouTube Data API v3",
+      description: 'Migrating from the YouTube Data API v2 to v3? Jeff Posnick walks you through the v3 API calls needed to get a list of the videos uploaded in a given channel, with live demos using the API Explorer (https://developers.google.com/apis-explorer).',
+      channel: 'Google for Developers',
+      duration: 659,
+      uploadedAt: '2014-01-29T17:53:13Z',
+      views: '61056',
+      likes: '440',
+      comments: '78',
+      link: 'https://www.youtube.com/watch?v=RjUlmco7v2M',
+      thumbnails: [Object],
+      tags: [Array]
+    }
+  ]
+}
+```
+</details>
+<br>
+
+
 ## Get Channel Info From Handle
 
 Requires Youtube Data API key
