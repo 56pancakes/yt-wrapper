@@ -55,7 +55,7 @@ export async function getVideoID(videoURL) {
     let regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
     videoID = videoURL.match(regex)[1];
   }
-  return videoID;
+  return videoID || null;
 }
 
 export async function getVideo(videoURL, apiKey) {
