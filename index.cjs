@@ -53,7 +53,9 @@ async function getVideoID(videoURL) {
   let videoID = null;
   if (/youtube|youtu\.be|y2u\.be|i.ytimg\./.test(videoURL)) {
     let regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-    videoID = videoURL.match(regex)[1];
+    if(videoURL.match(regex) && videoURL.match(regex)[1]) {
+      videoID = videoURL.match(regex)[1];
+    }
   }
   return videoID || null;
 }
